@@ -24,6 +24,8 @@ or Maven
 Or download the [latest AAR](https://bintray.com/xabaras/maven/RecyclerViewSwipeDecorator/_latestVersion) and add it to your project's libraries.
 
 ## Usage ##
+Here is a non-comprehensive guide to RecyclerViewSwipeDecorator for any further information you can reference the library [javadoc](https://xabaras.github.io/RecyclerViewSwipeDecorator/javadoc/), the sources and/or the sample app sources.
+
 Create an ItemTouchHelper.SimpleCallback, instantiate an ItemTouchHelper with this callback and attach it to your RecyclerView
 ```java
 ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
@@ -51,20 +53,22 @@ public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewH
 
 Create a RecyclerViewSwipeDecorator using the RecyclerViewSwipeDecoratorBuilder and call the decorate() method
 ```java
-new RecyclerViewSwipeDecorator.Builder(MainActivity.this, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,float dX, float dY,int actionState, boolean isCurrentlyActive){
+
+    new RecyclerViewSwipeDecorator.Builder(MainActivity.this, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
             .addBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.my_background))
             .addActionIcon(R.drawable.my_icon)
             .create()
             .decorate();
+            
+    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+}
 ```
-It's suggested to use 24dp square vector drawables.
 
 #### Customizing ####
 You can choose different background/icon combinations for left and right swipe directions by using direction specific methods in the Builder object.
-It's also available a method to set the action icon margin from the view left/right bound
-For any other question about creating a RecyclerViewSwipeDecorator refer to the Java Docs
-![javadoc](https://xabaras.github.io/RecyclerViewSwipeDecorator/)
-Feel also free to check out the full code of the sample app (inside this repo) for a concrete example of library usage.
+
+A method to set the action icon margin from the view left/right bound it available too.
 
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
 Add a background color to the view while swiping right.
