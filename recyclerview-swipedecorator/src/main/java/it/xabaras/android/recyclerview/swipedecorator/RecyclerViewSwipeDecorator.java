@@ -11,8 +11,7 @@ import android.util.Log;
 import android.util.TypedValue;
 
 /**
- * Created by Paolo Montalto on 22/05/17.
- * Copyright (c) 2017 Paolo Montalto. All rights reserved.
+ * A simple utility class to add a background and/or an icon while swiping a RecyclerView item left or right.
  */
 
 public class RecyclerViewSwipeDecorator {
@@ -42,7 +41,7 @@ public class RecyclerViewSwipeDecorator {
 
     /**
      * Create a @RecyclerViewSwipeDecorator
-     * @param context A valid Context object for the @RecyclerView
+     * @param context A valid Context object for the RecyclerView
      * @param canvas The canvas which RecyclerView is drawing its children
      * @param recyclerView The RecyclerView to which ItemTouchHelper is attached to
      * @param viewHolder The ViewHolder which is being interacted by the User or it was interacted and simply animating to its original position
@@ -115,7 +114,7 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
-     * Set the horizontal margin of the icon
+     * Set the horizontal margin of the icon (default is 16dp)
      * @param iconHorizontalMargin the margin in pixels
      */
     public void setIconHorizontalMargin(int iconHorizontalMargin) {
@@ -123,7 +122,7 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
-     * Decorate the @RecyclerView item with choosen backgrounds and icons
+     * Decorate the RecyclerView item with the chosen backgrounds and icons
      */
     public void decorate() {
         try {
@@ -165,12 +164,15 @@ public class RecyclerViewSwipeDecorator {
         }
     }
 
+    /**
+     * A Builder for the RecyclerViewSwipeDecorator class
+     */
     public static class Builder {
         private RecyclerViewSwipeDecorator mDecorator;
 
         /**
-         * Create a builder for a @RecyclerViewsSwipeDecorator
-         * @param context A valid Context object for the @RecyclerView
+         * Create a builder for a RecyclerViewsSwipeDecorator
+         * @param context A valid Context object for the RecyclerView
          * @param canvas The canvas which RecyclerView is drawing its children
          * @param recyclerView The RecyclerView to which ItemTouchHelper is attached to
          * @param viewHolder The ViewHolder which is being interacted by the User or it was interacted and simply animating to its original position
@@ -195,7 +197,7 @@ public class RecyclerViewSwipeDecorator {
         /**
          * Adds a background color to both swiping directions
          * @param color A single color value in the form 0xAARRGGBB
-         * @return
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder addBackgroundColor(int color) {
             mDecorator.setBackgroundColor(color);
@@ -203,9 +205,9 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Adds an action icon to both swiping directions
-         * @param drawableId
-         * @return
+         * Add an action icon to both swiping directions
+         * @param drawableId The resource id of the icon to be set
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder addActionIcon(int drawableId) {
             mDecorator.setActionIconId(drawableId);
@@ -213,9 +215,9 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Adds a background color while swiping right
+         * Add a background color while swiping right
          * @param color A single color value in the form 0xAARRGGBB
-         * @return
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder addSwipeRightBackgroundColor(int color) {
             mDecorator.setSwipeRightBackgroundColor(color);
@@ -223,9 +225,9 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Adds an action icon while swiping right
-         * @param drawableId
-         * @return
+         * Add an action icon while swiping right
+         * @param drawableId The resource id of the icon to be set
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder addSwipeRightActionIcon(int drawableId) {
             mDecorator.setSwipeRightActionIconId(drawableId);
@@ -235,7 +237,7 @@ public class RecyclerViewSwipeDecorator {
         /**
          * Adds a background color while swiping left
          * @param color A single color value in the form 0xAARRGGBB
-         * @return
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder addSwipeLeftBackgroundColor(int color) {
             mDecorator.setSwipeLeftBackgroundColor(color);
@@ -243,9 +245,9 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Adds an action icon while swiping left
-         * @param drawableId
-         * @return
+         * Add an action icon while swiping left
+         * @param drawableId The resource id of the icon to be set
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder addSwipeLeftActionIcon(int drawableId) {
             mDecorator.setSwipeLeftActionIconId(drawableId);
@@ -253,9 +255,9 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         *
+         * Set icon horizontal margin (default is 16dp)
          * @param pixels margin in pixels
-         * @return
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
         public Builder setIconHorizontalMargin(int pixels) {
             mDecorator.setIconHorizontalMargin(pixels);
@@ -263,7 +265,7 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Create a @RecyclerViewSwipeDecorator
+         * Create a RecyclerViewSwipeDecorator
          * @return The created @RecyclerViewSwipeDecorator
          */
         public RecyclerViewSwipeDecorator create() {

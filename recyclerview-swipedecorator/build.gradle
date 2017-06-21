@@ -30,3 +30,30 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     testCompile 'junit:junit:4.12'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'RecyclerViewSwipeDecorator'
+
+    publishedGroupId = 'it.xabaras.android'
+    libraryName = 'RecyclerViewSwipeDecorator'
+    artifact = 'recyclerview-swipedecorator'
+
+    libraryDescription = 'A simple utility class to add a background and/or an icon while swiping a RecyclerView item left or right.'
+
+    siteUrl = 'https://github.com/xabaras/RecyclerViewSwipeDecorator'
+    gitUrl = 'https://github.com/xabaras/RecyclerViewSwipeDecorator.git'
+
+    libraryVersion = '1.0'
+
+    developerId = 'xabaras'
+    developerName = 'Paolo Montalto'
+    developerEmail = 'p.montalto@xabaras.it'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

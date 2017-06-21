@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Created by Paolo Montalto on 12/06/17.
- * Copyright (c) 2017 TwoMenStudio. All rights reserved.
+ * Copyright (c) 2017 Paolo Montalto. All rights reserved.
  */
 
 class SampleRecyclerViewAdapter extends RecyclerView.Adapter<SampleRecyclerViewAdapter.ViewHolder> {
@@ -55,7 +55,7 @@ class SampleRecyclerViewAdapter extends RecyclerView.Adapter<SampleRecyclerViewA
     public void onBindViewHolder(ViewHolder holder, int position) {
         try {
             holder.text1.setText(mItems.get(position));
-            holder.text2.setText("Swipe left or right to see");
+            holder.text2.setText("Swipe left or right to see what happens");
         } catch(Exception e) {
             Log.e(TAG, e.getMessage());
         }
@@ -64,6 +64,15 @@ class SampleRecyclerViewAdapter extends RecyclerView.Adapter<SampleRecyclerViewA
     @Override
     public int getItemCount() {
         return mItems.size();
+    }
+
+    public void addItem(String item, int position) {
+        try {
+            mItems.add(position, item);
+            notifyItemInserted(position);
+        } catch(Exception e) {
+            Log.e("MainActivity", e.getMessage());
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,12 +86,15 @@ class SampleRecyclerViewAdapter extends RecyclerView.Adapter<SampleRecyclerViewA
         }
     }
 
-    public void removeItem(int position) {
+    public String removeItem(int position) {
+        String item = null;
         try {
+            item = mItems.get(position);
             mItems.remove(position);
             notifyItemRemoved(position);
         } catch(Exception e) {
             Log.e(TAG, e.getMessage());
         }
+        return item;
     }
 }

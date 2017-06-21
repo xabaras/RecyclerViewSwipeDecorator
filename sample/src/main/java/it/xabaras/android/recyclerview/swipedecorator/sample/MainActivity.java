@@ -1,6 +1,7 @@
 package it.xabaras.android.recyclerview.swipedecorator.sample;
 
 import android.graphics.Canvas;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -41,7 +43,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 try {
-                    mAdapter.removeItem(viewHolder.getAdapterPosition());
+                    final int position = viewHolder.getAdapterPosition();
+                    final String item = mAdapter.removeItem(position);
+                    Snackbar snackbar = Snackbar.make(viewHolder.itemView, "Item " + (direction == ItemTouchHelper.RIGHT ? "deleted" : "archived") + ".", Snackbar.LENGTH_LONG);
+                    snackbar.setAction(android.R.string.cancel, new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View view) {
+                            try {
+                                mAdapter.addItem(item, position);
+                            } catch(Exception e) {
+                                Log.e("MainActivity", e.getMessage());
+                            }
+                        }
+                    });
+                    snackbar.show();
                 } catch(Exception e) {
                     Log.e("MainActivity", e.getMessage());
                 }
