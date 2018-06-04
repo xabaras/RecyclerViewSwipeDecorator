@@ -143,7 +143,7 @@ public class RecyclerViewSwipeDecorator {
                     icon.setBounds(iconHorizontalMargin, top, iconHorizontalMargin + icon.getIntrinsicWidth(), top + icon.getIntrinsicHeight());
                     icon.draw(canvas);
                 }
-            } else {
+            } else if ( dX < 0 ) {
                 // Swiping Left
                 if ( swipeLeftBackgroundColor != 0 ) {
                     final ColorDrawable background = new ColorDrawable(swipeLeftBackgroundColor);
