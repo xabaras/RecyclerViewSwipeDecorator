@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "26.0.3"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 2
-        versionName "1.0.1"
+        targetSdkVersion 27
+        versionCode 3
+        versionName "1.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -26,8 +26,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support:recyclerview-v7:27.1.1'
     testCompile 'junit:junit:4.12'
 }
 
@@ -39,12 +39,12 @@ ext {
     libraryName = 'RecyclerViewSwipeDecorator'
     artifact = 'recyclerview-swipedecorator'
 
-    libraryDescription = 'A simple utility class to add a background and/or an icon while swiping a RecyclerView item left or right.'
+    libraryDescription = 'A simple utility class to add a background and/or an icon and/or a label while swiping a RecyclerView item left or right.'
 
     siteUrl = 'https://github.com/xabaras/RecyclerViewSwipeDecorator'
     gitUrl = 'https://github.com/xabaras/RecyclerViewSwipeDecorator.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.1'
 
     developerId = 'xabaras'
     developerName = 'Paolo Montalto'
