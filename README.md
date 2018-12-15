@@ -7,14 +7,14 @@ A simple utility class to add a background and/or an icon to a RecyclerView item
 ## How do I get set up? ##
 Get it via Gradle
 ```groovy
-implementation 'it.xabaras.android:recyclerview-swipedecorator:1.0.1'
+implementation 'it.xabaras.android:recyclerview-swipedecorator:1.1'
 ```
 or Maven
 ```xml
 <dependency>
   <groupId>it.xabaras.android</groupId>
   <artifactId>recyclerview-swipedecorator</artifactId>
-  <version>1.0.1</version>
+  <version>1.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -65,6 +65,7 @@ public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewH
 
 #### Customizing ####
 You can choose different background/icon combinations for left and right swipe directions by using direction specific methods in the Builder object.
+If you want you can add a label for each swiping direction.
 
 A method to set the action icon margin from the view left/right bound it available too.
 
@@ -82,3 +83,28 @@ Add an action icon while swiping left (it's suggested to use 24dp square vector 
 
 ##### public Builder setIconHorizontalMargin(int color) #####
 Set icon horizontal margin from left/right bound of the view (default is 16dp).
+
+##### public Builder addSwipeRightLabel(String label) #####
+Add a label to be shown while swiping right
+
+##### public Builder setSwipeRightLabelColor(int color) #####
+Set the color of the label to be shown while swiping right
+
+##### public Builder setSwipeRightLabelTextSize(int unit, float size) #####
+Set the size of the label to be shown while swiping right
+
+##### public Builder setSwipeRightLabelTypeface(Typeface typeface) #####
+Set the Typeface of the label to be shown while swiping right
+
+
+##### public Builder addSwipeLeftLabel(String label) #####
+Add a label to be shown while swiping left
+
+##### public Builder setSwipeLeftLabelColor(int color) #####
+Set the color of the label to be shown while swiping left
+
+##### public Builder setSwipeLeftLabelTextSize(int unit, float size) #####
+Set the size of the label to be shown while swiping left
+
+##### public Builder setSwipeLeftLabelTypeface(Typeface typeface) #####
+Set the Typeface of the label to be shown while swiping left
