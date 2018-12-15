@@ -1,6 +1,7 @@
 package it.xabaras.android.recyclerview.swipedecorator.sample;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                         .addSwipeLeftActionIcon(R.drawable.ic_archive_white_24dp)
                         .addSwipeRightBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.recycler_view_item_swipe_right_background))
                         .addSwipeRightActionIcon(R.drawable.ic_delete_white_24dp)
+                        .addSwipeRightLabel(getString(R.string.action_delete))
+                        .setSwipeRightLabelColor(Color.WHITE)
+                        .addSwipeLeftLabel(getString(R.string.action_archive))
+                        .setSwipeLeftLabelColor(Color.WHITE)
                         .create()
                         .decorate();
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
