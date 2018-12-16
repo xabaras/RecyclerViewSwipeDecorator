@@ -1,5 +1,5 @@
 # RecyclerViewSwipeDecorator #
-A simple utility class to add a background and/or an icon to a RecyclerView item while swiping it left or right.
+A simple utility class to add a background, an icon and a label to a RecyclerView item while swiping it left or right.
 
 ![Sample app - Swipe right](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen01.png)
 ![Sample app - Swipe left](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen02.png)
