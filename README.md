@@ -81,8 +81,14 @@ Add a background color to the view while swiping left.
 ##### public Builder addSwipeLeftActionIcon(int color) #####
 Add an action icon while swiping left (it's suggested to use 24dp square vector drawables.).
 
-##### public Builder setIconHorizontalMargin(int iconHorizontalMargin) #####
+
+~~##### public Builder setIconHorizontalMargin(int iconHorizontalMargin) #####~~
+
+[Deprecated] Set icon horizontal margin from left/right bound of the view (default is 16dp).
+
+##### public Builder setIconHorizontalMargin(int unit, int iconHorizontalMargin) #####
 Set icon horizontal margin from left/right bound of the view (default is 16dp).
+N.B. unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_DIP)
 
 ##### public Builder addSwipeRightLabel(String label) #####
 Add a label to be shown while swiping right
@@ -92,6 +98,7 @@ Set the color of the label to be shown while swiping right
 
 ##### public Builder setSwipeRightLabelTextSize(int unit, float size) #####
 Set the size of the label to be shown while swiping right
+N.B. unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_SP)
 
 ##### public Builder setSwipeRightLabelTypeface(Typeface typeface) #####
 Set the Typeface of the label to be shown while swiping right
@@ -105,6 +112,7 @@ Set the color of the label to be shown while swiping left
 
 ##### public Builder setSwipeLeftLabelTextSize(int unit, float size) #####
 Set the size of the label to be shown while swiping left
+N.B. unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_SP)
 
 ##### public Builder setSwipeLeftLabelTypeface(Typeface typeface) #####
 Set the Typeface of the label to be shown while swiping left
