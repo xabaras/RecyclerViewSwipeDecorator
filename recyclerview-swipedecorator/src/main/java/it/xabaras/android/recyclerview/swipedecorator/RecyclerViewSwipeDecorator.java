@@ -220,7 +220,7 @@ public class RecyclerViewSwipeDecorator {
                 }
 
                 int iconSize = 0;
-                if ( swipeRightActionIconId != 0 ) {
+                if ( swipeRightActionIconId != 0 && dX > iconHorizontalMargin ) {
                     Drawable icon = ContextCompat.getDrawable(context, swipeRightActionIconId);
                     iconSize = icon.getIntrinsicHeight();
                     int halfIcon = iconSize / 2;
@@ -249,7 +249,7 @@ public class RecyclerViewSwipeDecorator {
                 }
 
                 int imgLeft = viewHolder.itemView.getRight();
-                if ( swipeLeftActionIconId != 0 ) {
+                if ( swipeLeftActionIconId != 0 && dX < viewHolder.itemView.getRight() - iconHorizontalMargin ) {
                     Drawable icon = ContextCompat.getDrawable(context, swipeLeftActionIconId);
                     int halfIcon = icon.getIntrinsicHeight() / 2;
                     int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
