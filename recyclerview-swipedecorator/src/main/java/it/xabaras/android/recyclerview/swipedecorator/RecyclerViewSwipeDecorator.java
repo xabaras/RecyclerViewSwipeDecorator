@@ -163,11 +163,23 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
-     * Set the horizontal margin of the icon (default is 16dp)
+     * Set the horizontal margin of the icon in DPs (default is 16dp)
      * @param iconHorizontalMargin the margin in pixels
+     *
+     * @deprecated in RecyclerViewSwipeDecorator 1.2, use {@link #setIconHorizontalMargin(int, int)} instead.
      */
+    @Deprecated
     public void setIconHorizontalMargin(int iconHorizontalMargin) {
-        this.iconHorizontalMargin = iconHorizontalMargin;
+        setIconHorizontalMargin(TypedValue.COMPLEX_UNIT_DIP, iconHorizontalMargin);
+    }
+
+    /**
+     * Set the horizontal margin of the icon in the given unit (default is 16dp)
+     * @param unit TypedValue
+     * @param iconHorizontalMargin the margin in the given unit
+     */
+    public void setIconHorizontalMargin(int unit, int iconHorizontalMargin) {
+        this.iconHorizontalMargin = (int)TypedValue.applyDimension(unit, iconHorizontalMargin, context.getResources().getDisplayMetrics());
     }
 
     /**
@@ -448,12 +460,27 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Set icon horizontal margin (default is 16dp)
+         * Set the horizontal margin of the icon in DPs (default is 16dp)
          * @param pixels margin in pixels
          * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         *
+         * @deprecated in RecyclerViewSwipeDecorator 1.2, use {@link #setIconHorizontalMargin(int, int)} instead.
          */
+        @Deprecated
         public Builder setIconHorizontalMargin(int pixels) {
             mDecorator.setIconHorizontalMargin(pixels);
+            return this;
+        }
+
+        /**
+         * Set the horizontal margin of the icon in the given unit (default is 16dp)
+         * @param unit TypedValue
+         * @param iconHorizontalMargin the margin in the given unit
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         */
+        public Builder setIconHorizontalMargin(int unit, int iconHorizontalMargin) {
+            mDecorator.setIconHorizontalMargin(unit, iconHorizontalMargin);
             return this;
         }
 
