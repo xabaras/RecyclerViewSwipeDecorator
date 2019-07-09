@@ -81,7 +81,7 @@ Add a background color to the view while swiping left.
 ##### public Builder addSwipeLeftActionIcon(int color) #####
 Add an action icon while swiping left (it's suggested to use 24dp square vector drawables.).
 
-##### public Builder setIconHorizontalMargin(int color) #####
+##### public Builder setIconHorizontalMargin(int iconHorizontalMargin) #####
 Set icon horizontal margin from left/right bound of the view (default is 16dp).
 
 ##### public Builder addSwipeRightLabel(String label) #####
