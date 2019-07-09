@@ -3,6 +3,7 @@ package it.xabaras.android.recyclerview.swipedecorator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -29,9 +30,11 @@ public class RecyclerViewSwipeDecorator {
 
     private int swipeLeftBackgroundColor;
     private int swipeLeftActionIconId;
+    private Integer swipeLeftActionIconTint;
 
     private int swipeRightBackgroundColor;
     private int swipeRightActionIconId;
+    private Integer swipeRightActionIconTint;
 
     private int iconHorizontalMargin;
 
@@ -52,6 +55,8 @@ public class RecyclerViewSwipeDecorator {
         swipeRightBackgroundColor = 0;
         swipeLeftActionIconId = 0;
         swipeRightActionIconId = 0;
+        swipeLeftActionIconTint = null;
+        swipeRightActionIconTint = null;
     }
 
     /**
@@ -97,6 +102,15 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
+     * Set the tint color for either (left/right) action icons
+     * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
+     */
+    public void setActionIconTint(int color) {
+        this.setSwipeLeftActionIconTint(color);
+        this.setSwipeRightActionIconTint(color);
+    }
+
+    /**
      * Set the background color for left swipe direction
      * @param swipeLeftBackgroundColor The resource id of the background color to be set
      */
@@ -113,6 +127,14 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
+     * Set the tint color for action icon drawn while swiping left
+     * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
+     */
+    public void setSwipeLeftActionIconTint(int color) {
+        swipeLeftActionIconTint = color;
+    }
+
+    /**
      * Set the background color for right swipe direction
      * @param swipeRightBackgroundColor The resource id of the background color to be set
      */
@@ -126,6 +148,14 @@ public class RecyclerViewSwipeDecorator {
      */
     public void setSwipeRightActionIconId(int swipeRightActionIconId) {
         this.swipeRightActionIconId = swipeRightActionIconId;
+    }
+
+    /**
+     * Set the tint color for action icon drawn while swiping right
+     * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
+     */
+    public void setSwipeRightActionIconTint(int color) {
+        swipeRightActionIconTint = color;
     }
 
     /**
@@ -238,6 +268,8 @@ public class RecyclerViewSwipeDecorator {
                     int halfIcon = iconSize / 2;
                     int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
                     icon.setBounds(iconHorizontalMargin, top, iconHorizontalMargin + icon.getIntrinsicWidth(), top + icon.getIntrinsicHeight());
+                    if ( swipeRightActionIconTint != null )
+                        icon.setColorFilter(swipeRightActionIconTint, PorterDuff.Mode.SRC_IN);
                     icon.draw(canvas);
                 }
 
@@ -267,6 +299,8 @@ public class RecyclerViewSwipeDecorator {
                     int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
                     imgLeft = viewHolder.itemView.getRight() - iconHorizontalMargin - halfIcon * 2;
                     icon.setBounds(imgLeft, top, viewHolder.itemView.getRight() - iconHorizontalMargin, top + icon.getIntrinsicHeight());
+                    if ( swipeLeftActionIconTint != null )
+                        icon.setColorFilter(swipeLeftActionIconTint, PorterDuff.Mode.SRC_IN);
                     icon.draw(canvas);
                 }
 
@@ -338,6 +372,15 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
+         * Set the tint color for either (left/right) action icons
+         * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
+         */
+        public Builder setActionIconTint(int color) {
+            mDecorator.setActionIconTint(color);
+            return this;
+        }
+
+        /**
          * Add a background color while swiping right
          * @param color A single color value in the form 0xAARRGGBB
          * @return This instance of @RecyclerViewSwipeDecorator.Builder
@@ -354,6 +397,15 @@ public class RecyclerViewSwipeDecorator {
          */
         public Builder addSwipeRightActionIcon(int drawableId) {
             mDecorator.setSwipeRightActionIconId(drawableId);
+            return this;
+        }
+
+        /**
+         * Set the tint color for action icon drawn while swiping right
+         * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
+         */
+        public Builder setSwipeRightActionIconTint(int color) {
+            mDecorator.setSwipeRightActionIconTint(color);
             return this;
         }
 
@@ -415,6 +467,15 @@ public class RecyclerViewSwipeDecorator {
          */
         public Builder addSwipeLeftActionIcon(int drawableId) {
             mDecorator.setSwipeLeftActionIconId(drawableId);
+            return this;
+        }
+
+        /**
+         * Set the tint color for action icon drawn while swiping left
+         * @param color a color in ARGB format (e.g. 0xFF0000FF for blue)
+         */
+        public Builder setSwipeLeftActionIconTint(int color) {
+            mDecorator.setSwipeLeftActionIconTint(color);
             return this;
         }
 
