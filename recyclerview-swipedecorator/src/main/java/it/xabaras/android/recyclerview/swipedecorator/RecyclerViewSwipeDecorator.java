@@ -215,7 +215,7 @@ public class RecyclerViewSwipeDecorator {
                 // Swiping Right
                 if ( swipeRightBackgroundColor != 0 ) {
                     final ColorDrawable background = new ColorDrawable(swipeRightBackgroundColor);
-                    background.setBounds(0, viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
+                    background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
                     background.draw(canvas);
                 }
 
