@@ -7,14 +7,14 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 ## How do I get set up? ##
 Get it via Gradle
 ```groovy
-implementation 'it.xabaras.android:recyclerview-swipedecorator:1.1'
+implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2'
 ```
 or Maven
 ```xml
 <dependency>
   <groupId>it.xabaras.android</groupId>
   <artifactId>recyclerview-swipedecorator</artifactId>
-  <version>1.1</version>
+  <version>1.2</version>
   <type>pom</type>
 </dependency>
 ```
@@ -65,9 +65,18 @@ public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewH
 
 #### Customizing ####
 You can choose different background/icon combinations for left and right swipe directions by using direction specific methods in the Builder object.
-If you want you can add a label for each swiping direction.
+If you want you can add a label for each swiping direction or setting the icon tint.
 
 A method to set the action icon margin from the view left/right bound it available too.
+
+##### public Builder addBackgroundColor(int color) #####
+Add a background color to both swiping directions
+
+##### public Builder addActionIcon(int color) #####
+Add an action icon to both swiping directions
+
+##### public Builder setActionIconTint(int color) #####
+Set the tint color for either (left/right) action icons
 
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
 Add a background color to the view while swiping right.
@@ -75,12 +84,17 @@ Add a background color to the view while swiping right.
 ##### public Builder addSwipeRightActionIcon(int color) #####
 Add an action icon while swiping right (it's suggested to use 24dp square vector drawables.).
 
+##### public Builder setSwipeRightActionIconTint(int color) #####
+Set the tint color for action icon shown while swiping right
+
 ##### public Builder addSwipeLeftBackgroundColor(int color) #####
 Add a background color to the view while swiping left.
 
 ##### public Builder addSwipeLeftActionIcon(int color) #####
 Add an action icon while swiping left (it's suggested to use 24dp square vector drawables.).
 
+##### public Builder setSwipeLeftActionIconTint(int color) #####
+Set the tint color for action icon shown while swiping left
 
 ~~##### public Builder setIconHorizontalMargin(int iconHorizontalMargin) #####~~
 
