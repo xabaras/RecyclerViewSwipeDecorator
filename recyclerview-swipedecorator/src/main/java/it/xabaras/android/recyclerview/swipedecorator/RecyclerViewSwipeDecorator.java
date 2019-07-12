@@ -264,24 +264,26 @@ public class RecyclerViewSwipeDecorator {
                 int iconSize = 0;
                 if ( swipeRightActionIconId != 0 && dX > iconHorizontalMargin ) {
                     Drawable icon = ContextCompat.getDrawable(context, swipeRightActionIconId);
-                    iconSize = icon.getIntrinsicHeight();
-                    int halfIcon = iconSize / 2;
-                    int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
-                    icon.setBounds(iconHorizontalMargin, top, iconHorizontalMargin + icon.getIntrinsicWidth(), top + icon.getIntrinsicHeight());
-                    if ( swipeRightActionIconTint != null )
-                        icon.setColorFilter(swipeRightActionIconTint, PorterDuff.Mode.SRC_IN);
-                    icon.draw(canvas);
+                    if ( icon != null ) {
+                        iconSize = icon.getIntrinsicHeight();
+                        int halfIcon = iconSize / 2;
+                        int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
+                        icon.setBounds(viewHolder.itemView.getLeft() + iconHorizontalMargin, top, viewHolder.itemView.getLeft() + iconHorizontalMargin + icon.getIntrinsicWidth(), top + icon.getIntrinsicHeight());
+                        if (swipeRightActionIconTint != null)
+                            icon.setColorFilter(swipeRightActionIconTint, PorterDuff.Mode.SRC_IN);
+                        icon.draw(canvas);
+                    }
                 }
 
-                if ( mSwipeRightText != null && mSwipeRightText.length() > 0 ) {
+                if ( mSwipeRightText != null && mSwipeRightText.length() > 0 && dX > iconHorizontalMargin + iconSize) {
                     TextPaint textPaint = new TextPaint();
                     textPaint.setAntiAlias(true);
                     textPaint.setTextSize(TypedValue.applyDimension(mSwipeRightTextUnit, mSwipeRightTextSize, context.getResources().getDisplayMetrics()));
                     textPaint.setColor(mSwipeRightTextColor);
                     textPaint.setTypeface(mSwipeRightTypeface);
 
-                    int textTop = (int) (viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 ) + textPaint.getTextSize()/2);
-                    canvas.drawText(mSwipeRightText, iconHorizontalMargin + iconSize + (iconSize > 0 ? iconHorizontalMargin/2 : 0), textTop,textPaint);
+                    int textTop = (int) (viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2.0) + textPaint.getTextSize()/2);
+                    canvas.drawText(mSwipeRightText, viewHolder.itemView.getLeft() + iconHorizontalMargin + iconSize + (iconSize > 0 ? iconHorizontalMargin/2 : 0), textTop,textPaint);
                 }
 
             } else if ( dX < 0 ) {
@@ -292,19 +294,23 @@ public class RecyclerViewSwipeDecorator {
                     background.draw(canvas);
                 }
 
+                int iconSize = 0;
                 int imgLeft = viewHolder.itemView.getRight();
-                if ( swipeLeftActionIconId != 0 && dX < viewHolder.itemView.getRight() - iconHorizontalMargin ) {
+                if ( swipeLeftActionIconId != 0 && dX < - iconHorizontalMargin ) {
                     Drawable icon = ContextCompat.getDrawable(context, swipeLeftActionIconId);
-                    int halfIcon = icon.getIntrinsicHeight() / 2;
-                    int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
-                    imgLeft = viewHolder.itemView.getRight() - iconHorizontalMargin - halfIcon * 2;
-                    icon.setBounds(imgLeft, top, viewHolder.itemView.getRight() - iconHorizontalMargin, top + icon.getIntrinsicHeight());
-                    if ( swipeLeftActionIconTint != null )
-                        icon.setColorFilter(swipeLeftActionIconTint, PorterDuff.Mode.SRC_IN);
-                    icon.draw(canvas);
+                    if ( icon != null ) {
+                        iconSize = icon.getIntrinsicHeight();
+                        int halfIcon = iconSize / 2;
+                        int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
+                        imgLeft = viewHolder.itemView.getRight() - iconHorizontalMargin - halfIcon * 2;
+                        icon.setBounds(imgLeft, top, viewHolder.itemView.getRight() - iconHorizontalMargin, top + icon.getIntrinsicHeight());
+                        if (swipeLeftActionIconTint != null)
+                            icon.setColorFilter(swipeLeftActionIconTint, PorterDuff.Mode.SRC_IN);
+                        icon.draw(canvas);
+                    }
                 }
 
-                if ( mSwipeLeftText != null && mSwipeLeftText.length() > 0 ) {
+                if ( mSwipeLeftText != null && mSwipeLeftText.length() > 0 && dX < - iconHorizontalMargin - iconSize ) {
                     TextPaint textPaint = new TextPaint();
                     textPaint.setAntiAlias(true);
                     textPaint.setTextSize(TypedValue.applyDimension(mSwipeLeftTextUnit, mSwipeLeftTextSize, context.getResources().getDisplayMetrics()));
@@ -312,7 +318,7 @@ public class RecyclerViewSwipeDecorator {
                     textPaint.setTypeface(mSwipeLeftTypeface);
 
                     float width = textPaint.measureText(mSwipeLeftText);
-                    int textTop = (int) (viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2) + textPaint.getTextSize() / 2);
+                    int textTop = (int) (viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2.0) + textPaint.getTextSize() / 2);
                     canvas.drawText(mSwipeLeftText, imgLeft - width - ( imgLeft == viewHolder.itemView.getRight() ? iconHorizontalMargin : iconHorizontalMargin/2 ), textTop, textPaint);
                 }
             }
