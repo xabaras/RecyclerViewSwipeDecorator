@@ -3,4 +3,5 @@
     <string name="action_archive">Archive</string>
     <string name="action_delete">Delete</string>
     <string name="action_refresh">Refresh</string>
+    <string name="action_toggle">Toggle Layout Manager</string>
 </resources>

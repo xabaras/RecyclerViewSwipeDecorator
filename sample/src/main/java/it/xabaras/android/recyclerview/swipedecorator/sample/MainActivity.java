@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -21,13 +22,16 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 public class MainActivity extends AppCompatActivity {
 
     private SampleRecyclerViewAdapter mAdapter;
+    private MenuItem actionToggleLayout;
+    private boolean isLinear = true;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // Set a layout manager
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -89,15 +93,35 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+
+        actionToggleLayout = menu.findItem(R.id.actionToggleLayout);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         try {
-            if ( item.getItemId() == R.id.actionRefresh ) {
-                mAdapter.reloadItems();
-                mAdapter.notifyDataSetChanged();
+            switch (item.getItemId()) {
+                case R.id.actionRefresh: {
+                    mAdapter.reloadItems();
+                    mAdapter.notifyDataSetChanged();
+                    break;
+                }
+                case R.id.actionToggleLayout: {
+                    if ( isLinear ) {
+                        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+                        actionToggleLayout.setIcon(R.drawable.ic_list_white_24dp);
+                        isLinear = false;
+                    } else {
+                        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                        actionToggleLayout.setIcon(R.drawable.ic_grid_on_white_24dp);
+                        isLinear = true;
+                    }
+                    break;
+                }
+                default:
+                    break;
             }
         } catch(Exception e) {
             Log.e("MainActivity", e.getMessage());

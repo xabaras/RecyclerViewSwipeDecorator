@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/actionToggleLayout"
+        android:title="@string/action_toggle"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_grid_on_white_24dp"/>
+    <item
         android:id="@+id/actionRefresh"
         android:title="@string/action_refresh"
         app:showAsAction="always"
