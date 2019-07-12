@@ -7,14 +7,14 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 ## How do I get set up? ##
 Get it via Gradle
 ```groovy
-implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2'
+implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.1'
 ```
 or Maven
 ```xml
 <dependency>
   <groupId>it.xabaras.android</groupId>
   <artifactId>recyclerview-swipedecorator</artifactId>
-  <version>1.2</version>
+  <version>1.2.1</version>
   <type>pom</type>
 </dependency>
 ```
