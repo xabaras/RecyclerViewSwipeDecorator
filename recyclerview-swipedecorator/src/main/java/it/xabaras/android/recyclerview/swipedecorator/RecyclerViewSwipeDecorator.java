@@ -19,7 +19,6 @@ import android.util.TypedValue;
  */
 
 public class RecyclerViewSwipeDecorator {
-    private Context context;
     private Canvas canvas;
     private RecyclerView recyclerView;
     private RecyclerView.ViewHolder viewHolder;
@@ -69,10 +68,26 @@ public class RecyclerViewSwipeDecorator {
      * @param dY The amount of vertical displacement caused by user's action
      * @param actionState The type of interaction on the View. Is either ACTION_STATE_DRAG or ACTION_STATE_SWIPE.
      * @param isCurrentlyActive True if this view is currently being controlled by the user or false it is simply animating back to its original state
+     *
+     * @deprecated in RecyclerViewSwipeDecorator 1.2.2
      */
+    @Deprecated
     public RecyclerViewSwipeDecorator(Context context, Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        this(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+    }
+
+    /**
+     * Create a @RecyclerViewSwipeDecorator
+     * @param canvas The canvas which RecyclerView is drawing its children
+     * @param recyclerView The RecyclerView to which ItemTouchHelper is attached to
+     * @param viewHolder The ViewHolder which is being interacted by the User or it was interacted and simply animating to its original position
+     * @param dX The amount of horizontal displacement caused by user's action
+     * @param dY The amount of vertical displacement caused by user's action
+     * @param actionState The type of interaction on the View. Is either ACTION_STATE_DRAG or ACTION_STATE_SWIPE.
+     * @param isCurrentlyActive True if this view is currently being controlled by the user or false it is simply animating back to its original state
+     */
+    public RecyclerViewSwipeDecorator(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         this();
-        this.context = context;
         this.canvas = canvas;
         this.recyclerView = recyclerView;
         this.viewHolder = viewHolder;
@@ -80,7 +95,7 @@ public class RecyclerViewSwipeDecorator {
         this.dY = dY;
         this.actionState = actionState;
         this.isCurrentlyActive = isCurrentlyActive;
-        this.iconHorizontalMargin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, context.getResources().getDisplayMetrics());
+        this.iconHorizontalMargin = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, recyclerView.getContext().getResources().getDisplayMetrics());
     }
 
     /**
@@ -209,7 +224,7 @@ public class RecyclerViewSwipeDecorator {
      * @param iconHorizontalMargin the margin in the given unit
      */
     public void setIconHorizontalMargin(int unit, int iconHorizontalMargin) {
-        this.iconHorizontalMargin = (int)TypedValue.applyDimension(unit, iconHorizontalMargin, context.getResources().getDisplayMetrics());
+        this.iconHorizontalMargin = (int)TypedValue.applyDimension(unit, iconHorizontalMargin, recyclerView.getContext().getResources().getDisplayMetrics());
     }
 
     /**
@@ -263,7 +278,7 @@ public class RecyclerViewSwipeDecorator {
 
                 int iconSize = 0;
                 if ( swipeRightActionIconId != 0 && dX > iconHorizontalMargin ) {
-                    Drawable icon = ContextCompat.getDrawable(context, swipeRightActionIconId);
+                    Drawable icon = ContextCompat.getDrawable(recyclerView.getContext(), swipeRightActionIconId);
                     if ( icon != null ) {
                         iconSize = icon.getIntrinsicHeight();
                         int halfIcon = iconSize / 2;
@@ -278,7 +293,7 @@ public class RecyclerViewSwipeDecorator {
                 if ( mSwipeRightText != null && mSwipeRightText.length() > 0 && dX > iconHorizontalMargin + iconSize) {
                     TextPaint textPaint = new TextPaint();
                     textPaint.setAntiAlias(true);
-                    textPaint.setTextSize(TypedValue.applyDimension(mSwipeRightTextUnit, mSwipeRightTextSize, context.getResources().getDisplayMetrics()));
+                    textPaint.setTextSize(TypedValue.applyDimension(mSwipeRightTextUnit, mSwipeRightTextSize, recyclerView.getContext().getResources().getDisplayMetrics()));
                     textPaint.setColor(mSwipeRightTextColor);
                     textPaint.setTypeface(mSwipeRightTypeface);
 
@@ -297,7 +312,7 @@ public class RecyclerViewSwipeDecorator {
                 int iconSize = 0;
                 int imgLeft = viewHolder.itemView.getRight();
                 if ( swipeLeftActionIconId != 0 && dX < - iconHorizontalMargin ) {
-                    Drawable icon = ContextCompat.getDrawable(context, swipeLeftActionIconId);
+                    Drawable icon = ContextCompat.getDrawable(recyclerView.getContext(), swipeLeftActionIconId);
                     if ( icon != null ) {
                         iconSize = icon.getIntrinsicHeight();
                         int halfIcon = iconSize / 2;
@@ -313,7 +328,7 @@ public class RecyclerViewSwipeDecorator {
                 if ( mSwipeLeftText != null && mSwipeLeftText.length() > 0 && dX < - iconHorizontalMargin - iconSize ) {
                     TextPaint textPaint = new TextPaint();
                     textPaint.setAntiAlias(true);
-                    textPaint.setTextSize(TypedValue.applyDimension(mSwipeLeftTextUnit, mSwipeLeftTextSize, context.getResources().getDisplayMetrics()));
+                    textPaint.setTextSize(TypedValue.applyDimension(mSwipeLeftTextUnit, mSwipeLeftTextSize, recyclerView.getContext().getResources().getDisplayMetrics()));
                     textPaint.setColor(mSwipeLeftTextColor);
                     textPaint.setTypeface(mSwipeLeftTypeface);
 
@@ -343,10 +358,26 @@ public class RecyclerViewSwipeDecorator {
          * @param dY The amount of vertical displacement caused by user's action
          * @param actionState The type of interaction on the View. Is either ACTION_STATE_DRAG or ACTION_STATE_SWIPE.
          * @param isCurrentlyActive True if this view is currently being controlled by the user or false it is simply animating back to its original state
+         *
+         * @deprecated in RecyclerViewSwipeDecorator 1.2.2
          */
-        public Builder(Context context , Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+        @Deprecated
+        public Builder(Context context, Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            this(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+
+        /**
+         * Create a builder for a RecyclerViewsSwipeDecorator
+         * @param canvas The canvas which RecyclerView is drawing its children
+         * @param recyclerView The RecyclerView to which ItemTouchHelper is attached to
+         * @param viewHolder The ViewHolder which is being interacted by the User or it was interacted and simply animating to its original position
+         * @param dX The amount of horizontal displacement caused by user's action
+         * @param dY The amount of vertical displacement caused by user's action
+         * @param actionState The type of interaction on the View. Is either ACTION_STATE_DRAG or ACTION_STATE_SWIPE.
+         * @param isCurrentlyActive True if this view is currently being controlled by the user or false it is simply animating back to its original state
+         */
+        public Builder(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             mDecorator = new RecyclerViewSwipeDecorator(
-                    context,
                     canvas,
                     recyclerView,
                     viewHolder,
