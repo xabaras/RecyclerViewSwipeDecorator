@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
-int VERSION_CODE = 6
-String VERSION_NAME = "1.2.2"
+int VERSION_CODE = 7
+String VERSION_NAME = "1.2.3"
 
 android {
     compileSdkVersion 28

@@ -270,6 +270,7 @@ public class RecyclerViewSwipeDecorator {
 
             if ( dX > 0 ) {
                 // Swiping Right
+                canvas.clipRect(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
                 if ( swipeRightBackgroundColor != 0 ) {
                     final ColorDrawable background = new ColorDrawable(swipeRightBackgroundColor);
                     background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
@@ -303,6 +304,7 @@ public class RecyclerViewSwipeDecorator {
 
             } else if ( dX < 0 ) {
                 // Swiping Left
+                canvas.clipRect(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
                 if ( swipeLeftBackgroundColor != 0 ) {
                     final ColorDrawable background = new ColorDrawable(swipeLeftBackgroundColor);
                     background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
