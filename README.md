@@ -4,13 +4,15 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 ![Sample app - Swipe right](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen01.png)
 ![Sample app - Swipe left](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen02.png)
 
-N.B In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
-
 ## How do I get set up? ##
 
-# Latest Version
+In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
 
-Get latest version via [![](https://jitpack.io/v/xabaras/RecyclerViewSwipeDecorator.svg)](https://jitpack.io/#xabaras/RecyclerViewSwipeDecorator)
+### Latest Version ###
+
+Get latest version via JitPack
+
+[![](https://jitpack.io/v/xabaras/RecyclerViewSwipeDecorator.svg)](https://jitpack.io/#xabaras/RecyclerViewSwipeDecorator)
 
 If you use Gradle add JitPack in your root build.gradle at the end of repositories:
 ```groovy
@@ -48,7 +50,7 @@ Then add the dependency
 </dependency>
 ```
 
-#Previous versions ~1.2.3
+### Previous versions ~1.2.3 ###
 
 Get it via Gradle
 
@@ -65,7 +67,7 @@ or Maven
 </dependency>
 ```
 
-Currently working to bring latest version to Maven Central.
+**Currently working to bring latest version to Maven Central.**
 
 ## Usage ##
 Here is a non-comprehensive guide to RecyclerViewSwipeDecorator for any further information you can reference the library [javadoc](https://xabaras.github.io/RecyclerViewSwipeDecorator/javadoc/), the sources and/or the sample app sources.
@@ -116,63 +118,59 @@ If you want you can add a label for each swiping direction or setting the icon t
 A method to set the action icon margin from the view left/right bound it available too.
 
 ##### public Builder addBackgroundColor(int color) #####
-Add a background color to both swiping directions
+    Add a background color to both swiping directions
 
 ##### public Builder addActionIcon(int color) #####
-Add an action icon to both swiping directions
+    Add an action icon to both swiping directions
 
 ##### public Builder setActionIconTint(int color) #####
-Set the tint color for either (left/right) action icons
+    Set the tint color for either (left/right) action icons
 
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
-Add a background color to the view while swiping right.
+    Add a background color to the view while swiping right.
 
 ##### public Builder addSwipeRightActionIcon(int color) #####
-Add an action icon while swiping right (it's suggested to use 24dp square vector drawables.).
+    Add an action icon while swiping right (it's suggested to use 24dp square vector drawables.).
 
 ##### public Builder setSwipeRightActionIconTint(int color) #####
-Set the tint color for action icon shown while swiping right
+    Set the tint color for action icon shown while swiping right
 
 ##### public Builder addSwipeLeftBackgroundColor(int color) #####
-Add a background color to the view while swiping left.
+    Add a background color to the view while swiping left.
 
 ##### public Builder addSwipeLeftActionIcon(int color) #####
-Add an action icon while swiping left (it's suggested to use 24dp square vector drawables.).
+    Add an action icon while swiping left (it's suggested to use 24dp square vector drawables.).
 
 ##### public Builder setSwipeLeftActionIconTint(int color) #####
-Set the tint color for action icon shown while swiping left
-
-~~##### public Builder setIconHorizontalMargin(int iconHorizontalMargin) #####~~
-
-[Deprecated] Set icon horizontal margin from left/right bound of the view (default is 16dp).
+    Set the tint color for action icon shown while swiping left
 
 ##### public Builder setIconHorizontalMargin(int unit, int iconHorizontalMargin) #####
-Set icon horizontal margin from left/right bound of the view (default is 16dp).
-N.B. unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_DIP)
+    Set icon horizontal margin from left/right bound of the view (default is 16dp).
+    Unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_DIP)
 
 ##### public Builder addSwipeRightLabel(String label) #####
-Add a label to be shown while swiping right
+    Add a label to be shown while swiping right
 
 ##### public Builder setSwipeRightLabelColor(int color) #####
-Set the color of the label to be shown while swiping right
+    Set the color of the label to be shown while swiping right
 
 ##### public Builder setSwipeRightLabelTextSize(int unit, float size) #####
-Set the size of the label to be shown while swiping right
-N.B. unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_SP)
+    Set the size of the label to be shown while swiping right
+    Unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_SP)
 
 ##### public Builder setSwipeRightLabelTypeface(Typeface typeface) #####
-Set the Typeface of the label to be shown while swiping right
+    Set the Typeface of the label to be shown while swiping right
 
 
 ##### public Builder addSwipeLeftLabel(String label) #####
-Add a label to be shown while swiping left
+    Add a label to be shown while swiping left
 
 ##### public Builder setSwipeLeftLabelColor(int color) #####
-Set the color of the label to be shown while swiping left
+    Set the color of the label to be shown while swiping left
 
 ##### public Builder setSwipeLeftLabelTextSize(int unit, float size) #####
-Set the size of the label to be shown while swiping left
-N.B. unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_SP)
+    Set the size of the label to be shown while swiping left
+    Unit is a TypedValue (e.g. TypedValue.COMPLEX_UNIT_SP)
 
 ##### public Builder setSwipeLeftLabelTypeface(Typeface typeface) #####
-Set the Typeface of the label to be shown while swiping left
+    Set the Typeface of the label to be shown while swiping left
