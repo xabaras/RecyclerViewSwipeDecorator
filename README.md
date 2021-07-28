@@ -4,8 +4,54 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 ![Sample app - Swipe right](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen01.png)
 ![Sample app - Swipe left](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen02.png)
 
+N.B In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
+
 ## How do I get set up? ##
+
+# Latest Version
+
+Get latest version via [![](https://jitpack.io/v/xabaras/RecyclerViewSwipeDecorator.svg)](https://jitpack.io/#xabaras/RecyclerViewSwipeDecorator)
+
+If you use Gradle add JitPack in your root build.gradle at the end of repositories:
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+Then add the dependency
+```groovy
+dependencies {
+        implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.3'
+}
+```
+
+If you use Maven add the JitPack repository to your build file 
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Then add the dependency
+```xml
+<dependency>
+    <groupId>com.github.xabaras</groupId>
+    <artifactId>RecyclerViewSwipeDecorator</artifactId>
+    <version>1.3</version>
+</dependency>
+```
+
+#Previous versions ~1.2.3
+
 Get it via Gradle
+
 ```groovy
 implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
 ```
@@ -19,7 +65,7 @@ or Maven
 </dependency>
 ```
 
-Or download the [latest AAR](https://bintray.com/xabaras/maven/RecyclerViewSwipeDecorator/_latestVersion) and add it to your project's libraries.
+Currently working to bring latest version to Maven Central.
 
 ## Usage ##
 Here is a non-comprehensive guide to RecyclerViewSwipeDecorator for any further information you can reference the library [javadoc](https://xabaras.github.io/RecyclerViewSwipeDecorator/javadoc/), the sources and/or the sample app sources.
