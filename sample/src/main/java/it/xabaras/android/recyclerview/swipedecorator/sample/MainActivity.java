@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         .setSwipeRightLabelColor(Color.WHITE)
                         .addSwipeLeftLabel(getString(R.string.action_archive))
                         .setSwipeLeftLabelColor(Color.WHITE)
+                        // .setCornerRadius(TypedValue.COMPLEX_UNIT_DIP, 8)
                         .create()
                         .decorate();
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);

@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import android.graphics.drawable.GradientDrawable;
 import android.text.TextPaint;
 import android.util.Log;
 import android.util.TypedValue;
@@ -49,6 +50,8 @@ public class RecyclerViewSwipeDecorator {
     private int mSwipeRightTextColor = Color.DKGRAY;
     private Typeface mSwipeRightTypeface = Typeface.SANS_SERIF;
 
+    private float cornerRadius;
+
     private RecyclerViewSwipeDecorator() {
         swipeLeftBackgroundColor = 0;
         swipeRightBackgroundColor = 0;
@@ -56,6 +59,7 @@ public class RecyclerViewSwipeDecorator {
         swipeRightActionIconId = 0;
         swipeLeftActionIconTint = null;
         swipeRightActionIconTint = null;
+        cornerRadius = 0;
     }
 
     /**
@@ -262,6 +266,15 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
+     * Set the corner radius
+     * @param unit TypedValue
+     * @param size the radius value
+     */
+    public void setCornerRadius(int unit, int size) {
+        cornerRadius = (int) TypedValue.applyDimension(unit, size, recyclerView.getContext().getResources().getDisplayMetrics());
+    }
+
+    /**
      * Decorate the RecyclerView item with the chosen backgrounds and icons
      */
     public void decorate() {
@@ -272,9 +285,17 @@ public class RecyclerViewSwipeDecorator {
                 // Swiping Right
                 canvas.clipRect(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
                 if ( swipeRightBackgroundColor != 0 ) {
-                    final ColorDrawable background = new ColorDrawable(swipeRightBackgroundColor);
-                    background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
-                    background.draw(canvas);
+                    if ( cornerRadius != 0 ) {
+                        final GradientDrawable background = new GradientDrawable();
+                        background.setColor(swipeRightBackgroundColor);
+                        background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
+                        background.setCornerRadius(cornerRadius);
+                        background.draw(canvas);
+                    } else {
+                        final ColorDrawable background = new ColorDrawable(swipeRightBackgroundColor);
+                        background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
+                        background.draw(canvas);
+                    }
                 }
 
                 int iconSize = 0;
@@ -306,9 +327,17 @@ public class RecyclerViewSwipeDecorator {
                 // Swiping Left
                 canvas.clipRect(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
                 if ( swipeLeftBackgroundColor != 0 ) {
-                    final ColorDrawable background = new ColorDrawable(swipeLeftBackgroundColor);
-                    background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
-                    background.draw(canvas);
+                    if ( cornerRadius != 0 ) {
+                        final GradientDrawable background = new GradientDrawable();
+                        background.setColor(swipeLeftBackgroundColor);
+                        background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
+                        background.setCornerRadius(cornerRadius);
+                        background.draw(canvas);
+                    } else {
+                        final ColorDrawable background = new ColorDrawable(swipeLeftBackgroundColor);
+                        background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
+                        background.draw(canvas);
+                    }
                 }
 
                 int iconSize = 0;
@@ -584,6 +613,18 @@ public class RecyclerViewSwipeDecorator {
          */
         public Builder setIconHorizontalMargin(int unit, int iconHorizontalMargin) {
             mDecorator.setIconHorizontalMargin(unit, iconHorizontalMargin);
+            return this;
+        }
+
+        /**
+         * Set the corner radius
+         * @param unit the unit to convert from
+         * @param size the corner radius in the given unit
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         */
+        public Builder setCornerRadius(int unit, int size) {
+            mDecorator.setCornerRadius(unit, size);
             return this;
         }
 
