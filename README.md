@@ -6,7 +6,7 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 
 ## How do I get set up? ##
 
-In version 1.3.1 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
+In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
 
 ### Latest Version ###
 
@@ -27,7 +27,7 @@ allprojects {
 Then add the dependency
 ```groovy
 dependencies {
-        implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.3'
+        implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
 }
 ```
 
@@ -46,7 +46,7 @@ Then add the dependency
 <dependency>
     <groupId>com.github.xabaras</groupId>
     <artifactId>RecyclerViewSwipeDecorator</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
 </dependency>
 ```
 
@@ -118,17 +118,20 @@ If you want you can add a label for each swiping direction or setting the icon t
 A method to set the action icon margin from the view left/right bound it available too.
 
 ##### public Builder addBackgroundColor(int color) #####
-    Add a background color to both swiping directions
+    Add a background color to either (left/right) swipe directions
 
 ##### public Builder addActionIcon(int color) #####
-    Add an action icon to both swiping directions
+    Add an action icon to either (left/right) swipe directions
 
 ##### public Builder setActionIconTint(int color) #####
     Set the tint color for either (left/right) action icons
 
-##### public Builder setCornerRadius(int unit, float size) #####
-    Set the background corner radius for either (left/right) swipe directions
+##### public Builder addCornerRadius(int unit, float size) #####
+    Add a corner radius to swipe background for either (left/right) swipe directions
 
+##### public Builder addPadding(int unit, float top, float side, float bottom) #####
+    Add padding to the swipe background for either (left/right) swipe directions
+)
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
     Add a background color to the view while swiping right.
 
@@ -178,9 +181,15 @@ A method to set the action icon margin from the view left/right bound it availab
 ##### public Builder setSwipeLeftLabelTypeface(Typeface typeface) #####
     Set the Typeface of the label to be shown while swiping left
 
-##### public Builder setSwipeLeftCornerRadius(int unit, float size) #####
-    Set the background corner radius for left swipe direction
+##### public Builder addSwipeLeftCornerRadius(int unit, float size) #####
+    Add a corner radius to swipe background for left swipe direction
 
-##### public Builder setSwipeRightCornerRadius(int unit, float size) #####
-    Set the background corner radius for right swipe direction
+##### public Builder addSwipeRightCornerRadius(int unit, float size) #####
+    Add a corner radius to swipe background for right swipe direction
+
+##### public Builder addSwipeLeftPadding(int unit, float top, float right, float bottom) #####
+    Add a corner radius to swipe background for right swipe direction
+
+##### public Builder addSwipeRightPadding(int unit, float top, float left, float bottom) #####
+    Add a corner radius to swipe background for left swipe direction
 

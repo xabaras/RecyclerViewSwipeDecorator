@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
                         .setSwipeRightLabelColor(Color.WHITE)
                         .addSwipeLeftLabel(getString(R.string.action_archive))
                         .setSwipeLeftLabelColor(Color.WHITE)
-                        //.setCornerRadius(TypedValue.COMPLEX_UNIT_DIP, 16)
+                        //.addCornerRadius(TypedValue.COMPLEX_UNIT_DIP, 16)
+                        //.addPadding(TypedValue.COMPLEX_UNIT_DIP, 8, 16, 8)
                         .create()
                         .decorate();
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);

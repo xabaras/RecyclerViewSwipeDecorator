@@ -53,6 +53,9 @@ public class RecyclerViewSwipeDecorator {
     private float mSwipeLeftCornerRadius;
     private float mSwipeRightCornerRadius;
 
+    private int[] mSwipeLeftPadding;
+    private int[] mSwipeRightPadding;
+
     private RecyclerViewSwipeDecorator() {
         swipeLeftBackgroundColor = 0;
         swipeRightBackgroundColor = 0;
@@ -62,6 +65,8 @@ public class RecyclerViewSwipeDecorator {
         swipeRightActionIconTint = null;
         mSwipeLeftCornerRadius = 0;
         mSwipeRightCornerRadius = 0;
+        mSwipeLeftPadding = new int[]{0, 0, 0};
+        mSwipeRightPadding = new int[]{0, 0, 0};
     }
 
     /**
@@ -139,6 +144,18 @@ public class RecyclerViewSwipeDecorator {
     public void setCornerRadius(int unit, float size) {
         this.setSwipeLeftCornerRadius(unit, size);
         this.setSwipeRightCornerRadius(unit, size);
+    }
+
+    /**
+     * Set the background padding for either (left/right) swipe directions
+     * @param unit @TypedValue the unit to convert from
+     * @param top the top padding value
+     * @param side the side padding value
+     * @param bottom the bottom padding value
+     */
+    public void setPadding(int unit, float top, float side, float bottom) {
+        this.setSwipeLeftPadding(unit, top, side, bottom);
+        this.setSwipeRightPadding(unit, top, side, bottom);
     }
 
     /**
@@ -296,6 +313,36 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
+     * Set the background padding for left swipe direction
+     * @param unit @TypedValue the unit to convert from
+     * @param top the top padding value
+     * @param right the right padding value
+     * @param bottom the bottom padding value
+     */
+    public void setSwipeLeftPadding(int unit, float top, float right, float bottom) {
+        mSwipeLeftPadding = new int[] {
+                (int)TypedValue.applyDimension(unit, top, recyclerView.getContext().getResources().getDisplayMetrics()),
+                (int)TypedValue.applyDimension(unit, right, recyclerView.getContext().getResources().getDisplayMetrics()),
+                (int)TypedValue.applyDimension(unit, bottom, recyclerView.getContext().getResources().getDisplayMetrics())
+        };
+    }
+
+    /**
+     * Set the background padding for right swipe direction
+     * @param unit @TypedValue the unit to convert from
+     * @param top the top padding value
+     * @param left the left padding value
+     * @param bottom the bottom padding value
+     */
+    public void setSwipeRightPadding(int unit, float top, float left, float bottom) {
+        mSwipeRightPadding = new int[] {
+                (int)TypedValue.applyDimension(unit, top, recyclerView.getContext().getResources().getDisplayMetrics()),
+                (int)TypedValue.applyDimension(unit, left, recyclerView.getContext().getResources().getDisplayMetrics()),
+                (int)TypedValue.applyDimension(unit, bottom, recyclerView.getContext().getResources().getDisplayMetrics())
+        };
+    }
+
+    /**
      * Decorate the RecyclerView item with the chosen backgrounds and icons
      */
     public void decorate() {
@@ -309,12 +356,12 @@ public class RecyclerViewSwipeDecorator {
                     if ( mSwipeRightCornerRadius != 0 ) {
                         final GradientDrawable background = new GradientDrawable();
                         background.setColor(swipeRightBackgroundColor);
-                        background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
+                        background.setBounds(viewHolder.itemView.getLeft() + mSwipeRightPadding[1], viewHolder.itemView.getTop() + mSwipeRightPadding[0], viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom() - mSwipeRightPadding[2]);
                         background.setCornerRadii(new float[]{mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, 0, 0, 0, 0, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius});
                         background.draw(canvas);
                     } else {
                         final ColorDrawable background = new ColorDrawable(swipeRightBackgroundColor);
-                        background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
+                        background.setBounds(viewHolder.itemView.getLeft() + mSwipeRightPadding[1], viewHolder.itemView.getTop() + mSwipeRightPadding[0], viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom() - mSwipeRightPadding[2]);
                         background.draw(canvas);
                     }
                 }
@@ -326,7 +373,7 @@ public class RecyclerViewSwipeDecorator {
                         iconSize = icon.getIntrinsicHeight();
                         int halfIcon = iconSize / 2;
                         int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
-                        icon.setBounds(viewHolder.itemView.getLeft() + iconHorizontalMargin, top, viewHolder.itemView.getLeft() + iconHorizontalMargin + icon.getIntrinsicWidth(), top + icon.getIntrinsicHeight());
+                        icon.setBounds(viewHolder.itemView.getLeft() + iconHorizontalMargin + mSwipeRightPadding[1], top, viewHolder.itemView.getLeft() + iconHorizontalMargin + mSwipeRightPadding[1] + icon.getIntrinsicWidth(), top + icon.getIntrinsicHeight());
                         if (swipeRightActionIconTint != null)
                             icon.setColorFilter(swipeRightActionIconTint, PorterDuff.Mode.SRC_IN);
                         icon.draw(canvas);
@@ -341,7 +388,7 @@ public class RecyclerViewSwipeDecorator {
                     textPaint.setTypeface(mSwipeRightTypeface);
 
                     int textTop = (int) (viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2.0) + textPaint.getTextSize()/2);
-                    canvas.drawText(mSwipeRightText, viewHolder.itemView.getLeft() + iconHorizontalMargin + iconSize + (iconSize > 0 ? iconHorizontalMargin/2 : 0), textTop,textPaint);
+                    canvas.drawText(mSwipeRightText, viewHolder.itemView.getLeft() + iconHorizontalMargin  + mSwipeRightPadding[1] + iconSize + (iconSize > 0 ? iconHorizontalMargin/2 : 0), textTop,textPaint);
                 }
 
             } else if ( dX < 0 ) {
@@ -351,12 +398,12 @@ public class RecyclerViewSwipeDecorator {
                     if ( mSwipeLeftCornerRadius != 0 ) {
                         final GradientDrawable background = new GradientDrawable();
                         background.setColor(swipeLeftBackgroundColor);
-                        background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
+                        background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop() + mSwipeLeftPadding[0], viewHolder.itemView.getRight() - mSwipeLeftPadding[1], viewHolder.itemView.getBottom() - mSwipeLeftPadding[2]);
                         background.setCornerRadii(new float[]{0, 0, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, 0, 0});
                         background.draw(canvas);
                     } else {
                         final ColorDrawable background = new ColorDrawable(swipeLeftBackgroundColor);
-                        background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
+                        background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop() + mSwipeLeftPadding[0], viewHolder.itemView.getRight() - mSwipeLeftPadding[1], viewHolder.itemView.getBottom() - mSwipeLeftPadding[2]);
                         background.draw(canvas);
                     }
                 }
@@ -369,15 +416,15 @@ public class RecyclerViewSwipeDecorator {
                         iconSize = icon.getIntrinsicHeight();
                         int halfIcon = iconSize / 2;
                         int top = viewHolder.itemView.getTop() + ((viewHolder.itemView.getBottom() - viewHolder.itemView.getTop()) / 2 - halfIcon);
-                        imgLeft = viewHolder.itemView.getRight() - iconHorizontalMargin - halfIcon * 2;
-                        icon.setBounds(imgLeft, top, viewHolder.itemView.getRight() - iconHorizontalMargin, top + icon.getIntrinsicHeight());
+                        imgLeft = viewHolder.itemView.getRight() - iconHorizontalMargin - mSwipeLeftPadding[1] - halfIcon * 2;
+                        icon.setBounds(imgLeft, top, viewHolder.itemView.getRight() - iconHorizontalMargin - mSwipeLeftPadding[1], top + icon.getIntrinsicHeight());
                         if (swipeLeftActionIconTint != null)
                             icon.setColorFilter(swipeLeftActionIconTint, PorterDuff.Mode.SRC_IN);
                         icon.draw(canvas);
                     }
                 }
 
-                if ( mSwipeLeftText != null && mSwipeLeftText.length() > 0 && dX < - iconHorizontalMargin - iconSize ) {
+                if ( mSwipeLeftText != null && mSwipeLeftText.length() > 0 && dX < - iconHorizontalMargin - mSwipeLeftPadding[1] - iconSize ) {
                     TextPaint textPaint = new TextPaint();
                     textPaint.setAntiAlias(true);
                     textPaint.setTextSize(TypedValue.applyDimension(mSwipeLeftTextUnit, mSwipeLeftTextSize, recyclerView.getContext().getResources().getDisplayMetrics()));
@@ -471,14 +518,28 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Set the corner radius
+         * Add a corner radius to swipe background for both swipe directions
          * @param unit @TypedValue the unit to convert from
          * @param size the corner radius in the given unit
          *
          * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
-        public Builder setCornerRadius(int unit, int size) {
+        public Builder addCornerRadius(int unit, int size) {
             mDecorator.setCornerRadius(unit, size);
+            return this;
+        }
+
+        /**
+         * Add padding to the swipe background for both swipe directions
+         * @param unit @TypedValue the unit to convert from
+         * @param top the top padding value
+         * @param side the side padding value
+         * @param bottom the bottom padding value
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         */
+        public Builder addPadding(int unit, float top, float side, float bottom) {
+            mDecorator.setPadding(unit, top, side, bottom);
             return this;
         }
 
@@ -656,7 +717,7 @@ public class RecyclerViewSwipeDecorator {
          *
          * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
-        public Builder setSwipeLeftCornerRadius(int unit, float size) {
+        public Builder addSwipeLeftCornerRadius(int unit, float size) {
             mDecorator.setSwipeLeftCornerRadius(unit, size);
             return this;
         }
@@ -665,9 +726,40 @@ public class RecyclerViewSwipeDecorator {
          * Set the background corner radius for right swipe direction
          * @param unit @TypedValue the unit to convert from
          * @param size the radius value
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
-        public void setSwipeRightCornerRadius(int unit, float size) {
+        public Builder addSwipeRightCornerRadius(int unit, float size) {
             mDecorator.setSwipeRightCornerRadius(unit, size);
+            return this;
+        }
+
+        /**
+         * Add padding to the swipe background for left swipe direction
+         * @param unit @TypedValue the unit to convert from
+         * @param top the top padding value
+         * @param right the right padding value
+         * @param bottom the bottom padding value
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         */
+        public Builder addSwipeLeftPadding(int unit, float top, float right, float bottom) {
+            mDecorator.setSwipeLeftPadding(unit, top, right, bottom);
+            return this;
+        }
+
+        /**
+         * Add padding to the swipe background for right swipe direction
+         * @param unit @TypedValue the unit to convert from
+         * @param top the top padding value
+         * @param left the left padding value
+         * @param bottom the bottom padding value
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         */
+        public Builder addSwipeRightPadding(int unit, float top, float left, float bottom) {
+            mDecorator.setSwipeRightPadding(unit, top, left, bottom);
+            return this;
         }
 
         /**
