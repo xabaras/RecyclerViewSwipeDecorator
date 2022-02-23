@@ -6,7 +6,7 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 
 ## How do I get set up? ##
 
-In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
+In version 1.3.1 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
 
 ### Latest Version ###
 
@@ -126,6 +126,9 @@ A method to set the action icon margin from the view left/right bound it availab
 ##### public Builder setActionIconTint(int color) #####
     Set the tint color for either (left/right) action icons
 
+##### public Builder setCornerRadius(int unit, float size) #####
+    Set the background corner radius for either (left/right) swipe directions
+
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
     Add a background color to the view while swiping right.
 
@@ -174,3 +177,10 @@ A method to set the action icon margin from the view left/right bound it availab
 
 ##### public Builder setSwipeLeftLabelTypeface(Typeface typeface) #####
     Set the Typeface of the label to be shown while swiping left
+
+##### public Builder setSwipeLeftCornerRadius(int unit, float size) #####
+    Set the background corner radius for left swipe direction
+
+##### public Builder setSwipeRightCornerRadius(int unit, float size) #####
+    Set the background corner radius for right swipe direction
+

@@ -50,7 +50,8 @@ public class RecyclerViewSwipeDecorator {
     private int mSwipeRightTextColor = Color.DKGRAY;
     private Typeface mSwipeRightTypeface = Typeface.SANS_SERIF;
 
-    private float cornerRadius;
+    private float mSwipeLeftCornerRadius;
+    private float mSwipeRightCornerRadius;
 
     private RecyclerViewSwipeDecorator() {
         swipeLeftBackgroundColor = 0;
@@ -59,7 +60,8 @@ public class RecyclerViewSwipeDecorator {
         swipeRightActionIconId = 0;
         swipeLeftActionIconTint = null;
         swipeRightActionIconTint = null;
-        cornerRadius = 0;
+        mSwipeLeftCornerRadius = 0;
+        mSwipeRightCornerRadius = 0;
     }
 
     /**
@@ -127,6 +129,16 @@ public class RecyclerViewSwipeDecorator {
     public void setActionIconTint(int color) {
         this.setSwipeLeftActionIconTint(color);
         this.setSwipeRightActionIconTint(color);
+    }
+
+    /**
+     * Set the background corner radius for either (left/right) swipe directions
+     * @param unit @TypedValue the unit to convert from
+     * @param size the radius value
+     */
+    public void setCornerRadius(int unit, float size) {
+        this.setSwipeLeftCornerRadius(unit, size);
+        this.setSwipeRightCornerRadius(unit, size);
     }
 
     /**
@@ -266,12 +278,21 @@ public class RecyclerViewSwipeDecorator {
     }
 
     /**
-     * Set the corner radius
-     * @param unit TypedValue
+     * Set the background corner radius for left swipe direction
+     * @param unit @TypedValue the unit to convert from
      * @param size the radius value
      */
-    public void setCornerRadius(int unit, int size) {
-        cornerRadius = (int) TypedValue.applyDimension(unit, size, recyclerView.getContext().getResources().getDisplayMetrics());
+    public void setSwipeLeftCornerRadius(int unit, float size) {
+        mSwipeLeftCornerRadius = TypedValue.applyDimension(unit, size, recyclerView.getContext().getResources().getDisplayMetrics());
+    }
+
+    /**
+     * Set the background corner radius for right swipe direction
+     * @param unit @TypedValue the unit to convert from
+     * @param size the radius value
+     */
+    public void setSwipeRightCornerRadius(int unit, float size) {
+        mSwipeRightCornerRadius = TypedValue.applyDimension(unit, size, recyclerView.getContext().getResources().getDisplayMetrics());
     }
 
     /**
@@ -285,11 +306,11 @@ public class RecyclerViewSwipeDecorator {
                 // Swiping Right
                 canvas.clipRect(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
                 if ( swipeRightBackgroundColor != 0 ) {
-                    if ( cornerRadius != 0 ) {
+                    if ( mSwipeRightCornerRadius != 0 ) {
                         final GradientDrawable background = new GradientDrawable();
                         background.setColor(swipeRightBackgroundColor);
                         background.setBounds(viewHolder.itemView.getLeft(), viewHolder.itemView.getTop(), viewHolder.itemView.getLeft() + (int) dX, viewHolder.itemView.getBottom());
-                        background.setCornerRadius(cornerRadius);
+                        background.setCornerRadii(new float[]{mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, 0, 0, 0, 0, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius});
                         background.draw(canvas);
                     } else {
                         final ColorDrawable background = new ColorDrawable(swipeRightBackgroundColor);
@@ -327,11 +348,11 @@ public class RecyclerViewSwipeDecorator {
                 // Swiping Left
                 canvas.clipRect(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
                 if ( swipeLeftBackgroundColor != 0 ) {
-                    if ( cornerRadius != 0 ) {
+                    if ( mSwipeLeftCornerRadius != 0 ) {
                         final GradientDrawable background = new GradientDrawable();
                         background.setColor(swipeLeftBackgroundColor);
                         background.setBounds(viewHolder.itemView.getRight() + (int) dX, viewHolder.itemView.getTop(), viewHolder.itemView.getRight(), viewHolder.itemView.getBottom());
-                        background.setCornerRadius(cornerRadius);
+                        background.setCornerRadii(new float[]{0, 0, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, mSwipeLeftCornerRadius, 0, 0});
                         background.draw(canvas);
                     } else {
                         final ColorDrawable background = new ColorDrawable(swipeLeftBackgroundColor);
@@ -446,6 +467,18 @@ public class RecyclerViewSwipeDecorator {
          */
         public Builder setActionIconTint(int color) {
             mDecorator.setActionIconTint(color);
+            return this;
+        }
+
+        /**
+         * Set the corner radius
+         * @param unit @TypedValue the unit to convert from
+         * @param size the corner radius in the given unit
+         *
+         * @return This instance of @RecyclerViewSwipeDecorator.Builder
+         */
+        public Builder setCornerRadius(int unit, int size) {
+            mDecorator.setCornerRadius(unit, size);
             return this;
         }
 
@@ -606,7 +639,7 @@ public class RecyclerViewSwipeDecorator {
 
         /**
          * Set the horizontal margin of the icon in the given unit (default is 16dp)
-         * @param unit TypedValue
+         * @param unit @TypedValue the unit to convert from
          * @param iconHorizontalMargin the margin in the given unit
          *
          * @return This instance of @RecyclerViewSwipeDecorator.Builder
@@ -617,15 +650,24 @@ public class RecyclerViewSwipeDecorator {
         }
 
         /**
-         * Set the corner radius
-         * @param unit the unit to convert from
-         * @param size the corner radius in the given unit
+         * Set the background corner radius for left swipe direction
+         * @param unit @TypedValue the unit to convert from
+         * @param size the radius value
          *
          * @return This instance of @RecyclerViewSwipeDecorator.Builder
          */
-        public Builder setCornerRadius(int unit, int size) {
-            mDecorator.setCornerRadius(unit, size);
+        public Builder setSwipeLeftCornerRadius(int unit, float size) {
+            mDecorator.setSwipeLeftCornerRadius(unit, size);
             return this;
+        }
+
+        /**
+         * Set the background corner radius for right swipe direction
+         * @param unit @TypedValue the unit to convert from
+         * @param size the radius value
+         */
+        public void setSwipeRightCornerRadius(int unit, float size) {
+            mDecorator.setSwipeRightCornerRadius(unit, size);
         }
 
         /**
