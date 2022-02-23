@@ -126,10 +126,10 @@ A method to set the action icon margin from the view left/right bound it availab
 ##### public Builder setActionIconTint(int color) #####
     Set the tint color for either (left/right) action icons
 
-##### public Builder addCornerRadius(int unit, float size) #####
+##### public Builder addCornerRadius(int unit, float size) ##### :new:
     Add a corner radius to swipe background for either (left/right) swipe directions
 
-##### public Builder addPadding(int unit, float top, float side, float bottom) #####
+##### public Builder addPadding(int unit, float top, float side, float bottom) ##### :new:
     Add padding to the swipe background for either (left/right) swipe directions
 )
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
@@ -181,15 +181,15 @@ A method to set the action icon margin from the view left/right bound it availab
 ##### public Builder setSwipeLeftLabelTypeface(Typeface typeface) #####
     Set the Typeface of the label to be shown while swiping left
 
-##### public Builder addSwipeLeftCornerRadius(int unit, float size) #####
+##### public Builder addSwipeLeftCornerRadius(int unit, float size) ##### :new:
     Add a corner radius to swipe background for left swipe direction
 
-##### public Builder addSwipeRightCornerRadius(int unit, float size) #####
+##### public Builder addSwipeRightCornerRadius(int unit, float size) ##### :new:
     Add a corner radius to swipe background for right swipe direction
 
-##### public Builder addSwipeLeftPadding(int unit, float top, float right, float bottom) #####
+##### public Builder addSwipeLeftPadding(int unit, float top, float right, float bottom) ##### :new:
     Add a corner radius to swipe background for right swipe direction
 
-##### public Builder addSwipeRightPadding(int unit, float top, float left, float bottom) #####
+##### public Builder addSwipeRightPadding(int unit, float top, float left, float bottom) ##### :new:
     Add a corner radius to swipe background for left swipe direction
 
