@@ -131,7 +131,7 @@ A method to set the action icon margin from the view left/right bound it availab
 
 ##### public Builder addPadding(int unit, float top, float side, float bottom) ##### :new:
     Add padding to the swipe background for either (left/right) swipe directions
-)
+
 ##### public Builder addSwipeRightBackgroundColor(int color) #####
     Add a background color to the view while swiping right.
 
