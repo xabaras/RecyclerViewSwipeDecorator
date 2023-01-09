@@ -6,68 +6,24 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 
 ## How do I get set up? ##
 
-In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
-
-### Latest Version ###
-
-Get latest version via JitPack
-
-[![](https://jitpack.io/v/xabaras/RecyclerViewSwipeDecorator.svg)](https://jitpack.io/#xabaras/RecyclerViewSwipeDecorator)
-
-If you use Gradle add JitPack in your root build.gradle at the end of repositories:
-```groovy
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
-    }
-}
-```
-
-Then add the dependency
-```groovy
-dependencies {
-        implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
-}
-```
-
-If you use Maven add the JitPack repository to your build file 
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-```
-
-Then add the dependency
-```xml
-<dependency>
-    <groupId>com.github.xabaras</groupId>
-    <artifactId>RecyclerViewSwipeDecorator</artifactId>
-    <version>1.4</version>
-</dependency>
-```
-
-### Previous versions ~1.2.3 ###
-
 Get it via Gradle
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.xabaras.android/recyclerview-swipedecorator/badge.svg?style=flat&gav=true&version=1.4)](https://central.sonatype.dev/artifact/it.xabaras.android/recyclerview-swipedecorator/1.4)
+
 ```groovy
-implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
 ```
 or Maven
 ```xml
 <dependency>
   <groupId>it.xabaras.android</groupId>
   <artifactId>recyclerview-swipedecorator</artifactId>
-  <version>1.2.3</version>
+  <version>1.4</version>
   <type>pom</type>
 </dependency>
 ```
 
-**Currently working to bring latest version to Maven Central.**
+In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
 
 ## Usage ##
 Here is a non-comprehensive guide to RecyclerViewSwipeDecorator for any further information you can reference the library [javadoc](https://xabaras.github.io/RecyclerViewSwipeDecorator/javadoc/), the sources and/or the sample app sources.

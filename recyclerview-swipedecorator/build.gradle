@@ -1,17 +1,20 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven'
+import com.vanniktech.maven.publish.SonatypeHost
 
-group = 'com.github.xabaras'
+plugins {
+    id 'com.android.library'
+    id "com.vanniktech.maven.publish" version "0.23.1"
+}
+
 
 int VERSION_CODE = 8
-String VERSION_NAME = "1.3"
+String VERSION_NAME = "1.4"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode VERSION_CODE
         versionName VERSION_NAME
 
@@ -36,26 +39,36 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'RecyclerViewSwipeDecorator'
+mavenPublishing {
+    coordinates("it.xabaras.android", "recyclerview-swipedecorator", "1.4")
 
-    publishedGroupId = 'it.xabaras.android'
-    libraryName = 'RecyclerViewSwipeDecorator'
-    artifact = 'recyclerview-swipedecorator'
+    pom {
+        name = "RecyclerViewSwipeDecorator"
+        description = "A simple utility class to add a background and/or an icon and/or a label while swiping a RecyclerView item left or right."
+        inceptionYear = "2018"
+        url = "https://github.com/xabaras/RecyclerViewSwipeDecorator"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "xabaras"
+                name = "Paolo Montalto"
+                url = "https://github.com/xabaras/"
+                email = "p.montalto@xabaras.it"
+            }
+        }
+        scm {
+            url = "https://github.com/xabaras/RecyclerViewSwipeDecorator/"
+            connection = "scm:git:git://github.com/xabaras/RecyclerViewSwipeDecorator.git"
+            developerConnection = "scm:git:ssh://git@github.com/xabaras/RecyclerViewSwipeDecorator.git"
+        }
+    }
 
-    libraryDescription = 'A simple utility class to add a background and/or an icon and/or a label while swiping a RecyclerView item left or right.'
-
-    siteUrl = 'https://github.com/xabaras/RecyclerViewSwipeDecorator'
-    gitUrl = 'https://github.com/xabaras/RecyclerViewSwipeDecorator.git'
-
-    libraryVersion = VERSION_NAME
-
-    developerId = 'xabaras'
-    developerName = 'Paolo Montalto'
-    developerEmail = 'p.montalto@xabaras.it'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+    publishToMavenCentral(SonatypeHost.DEFAULT)
+    signAllPublications()
 }
