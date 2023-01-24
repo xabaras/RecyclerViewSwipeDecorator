@@ -1,5 +1,5 @@
 # RecyclerViewSwipeDecorator #
-A simple utility class to add a background, an icon and a label to a RecyclerView item while swiping it left or right.
+### A simple utility class to add a background, an icon and a label to a RecyclerView item while swiping it left or right.
 
 ![Sample app - Swipe right](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen01.png)
 ![Sample app - Swipe left](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen02.png)
@@ -23,7 +23,7 @@ or Maven
 </dependency>
 ```
 
-In version 1.3 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
+In version 1.4 RecyclerViewSwipeDecorator migrated to [AndroidX](https://developer.android.com/jetpack/androidx/migrate)
 
 ## Usage ##
 Here is a non-comprehensive guide to RecyclerViewSwipeDecorator for any further information you can reference the library [javadoc](https://xabaras.github.io/RecyclerViewSwipeDecorator/javadoc/), the sources and/or the sample app sources.
@@ -122,7 +122,6 @@ A method to set the action icon margin from the view left/right bound it availab
 
 ##### public Builder setSwipeRightLabelTypeface(Typeface typeface) #####
     Set the Typeface of the label to be shown while swiping right
-
 
 ##### public Builder addSwipeLeftLabel(String label) #####
     Add a label to be shown while swiping left
