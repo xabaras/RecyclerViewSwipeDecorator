@@ -1,4 +1,6 @@
 # RecyclerViewSwipeDecorator #
+[![Maven Central](https://maven-badges.sml.io/maven-central/it.xabaras.android/recyclerview-swipedecorator/badge.svg?style=flat&gav=true&version=1.4)](https://central.sonatype.com/artifact/it.xabaras.android/recyclerview-swipedecorator/1.4)
+
 A simple utility class to add a background, an icon and a label to a RecyclerView item while swiping it left or right.
 
 ![Sample app - Swipe right](https://xabaras.github.io/RecyclerViewSwipeDecorator/img/screen01.png)
@@ -7,8 +9,6 @@ A simple utility class to add a background, an icon and a label to a RecyclerVie
 ## How do I get set up? ##
 
 Get it via Gradle
-
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.xabaras.android/recyclerview-swipedecorator/badge.svg?style=flat&gav=true&version=1.4)](https://central.sonatype.dev/artifact/it.xabaras.android/recyclerview-swipedecorator/1.4)
 
 ```groovy
 implementation 'it.xabaras.android:recyclerview-swipedecorator:1.4'
